@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahona's Special Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+        :root {
+            --main-pink: #fbc2eb;
+            --dark-pink: #e089b3;
+            --soft-pink: #feeaf4;
+            --text-pink: #d1619a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fce4ec;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- Login Styles --- */
+        .login-card {
+            width: 350px;
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .top-section {
+            background-color: #ff85a2;
+            height: 220px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        .profile-img {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            border: 6px solid white;
+            background-image: url('https://i.ibb.co/5WRjBZ1W/1725475765015-2.jpg'); 
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            bottom: -72px;
+            box-shadow: 0 10px 20px rgba(255, 133, 162, 0.4);
+            background-color: #fff;
+        }
+
+        .form-section { padding: 100px 30px 45px 30px; }
+
+        .name-tag {
+            background-color: #ff85a2;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 25px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #f2f2f2;
+            border-radius: 30px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+            background-color: #fafafa;
+            box-sizing: border-box;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #ff85a2, #ff4d6d);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- Welcome Page / Music Player Styles --- */
+        #musicPlayer {
+            display: none;
+            width: 350px;
+            background: #fff;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .top-welcome-area { padding: 15px 0; background: #fff; }
+        .welcome-text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 32px;
+            color: #f48fb1;
+            animation: float 2s infinite alternate;
+        }
+
+        @keyframes float { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+
+        .header-img-welcome { width: 100%; height: 200px; overflow: hidden; }
+        .header-img-welcome img { width: 100%; height: 100%; object-fit: contain; }
+
+        .content-welcome { padding: 20px; text-align: left; }
+        .music-row { display: flex; align-items: center; gap: 15px; margin: 10px 0 20px 0; }
+        
+        .play-btn {
+            width: 50px; height: 50px;
+            background: #000; color: #fff;
+            border: none; border-radius: 50%;
+            cursor: pointer; font-size: 20px;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .photo-grid { display: flex; gap: 10px; justify-content: center; }
+        .photo-box-welcome { width: 140px; height: 140px; border-radius: 25px; overflow: hidden; }
+        .photo-box-welcome img { width: 100%; height: 100%; object-fit: cover; }
+
+        .footer-bar {
+            background: #f48fb1;
+            height: 70px;
+            border-radius: 40px 40px 0 0;
+            position: relative;
+            margin-top: 25px;
+        }
+
+        .click-me-btn {
+            position: absolute; top: -30px; left: 50%;
+            transform: translateX(-50%);
+            width: 90px; height: 90px;
+            background: #fff; border: 4px solid #f48fb1;
+            border-radius: 50%; display: flex;
+            justify-content: center; align-items: center;
+            color: #f48fb1; font-weight: bold; font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* --- Cyber Pink Page Styles (Container) --- */
+        #cyberPinkContainer {
+            display: none;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .cyber-card-main {
+            position: relative;
+            background: var(--main-pink);
+            padding: 15px;
+            padding-bottom: 70px;
+            border-radius: 10px;
+            clip-path: polygon(0% 5%, 15% 5%, 15% 0%, 55% 0%, 55% 2%, 85% 2%, 85% 5%, 100% 5%, 100% 95%, 90% 95%, 90% 100%, 10% 100%, 10% 95%, 0% 95%);
+        }
+
+        .header-box {
+            width: 100%; height: 220px; background: white; border-radius: 12px;
+            margin-bottom: 15px; overflow: hidden; display: flex; border: 2px solid white;
+        }
+        .header-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .inner-canvas {
+            background: var(--soft-pink); padding: 15px;
+            display: grid; grid-template-columns: 1fr; gap: 15px; border-radius: 10px;
+        }
+
+        .card {
+            background: white; border-radius: 25px; padding: 10px 15px;
+            display: flex; align-items: center; justify-content: space-between; border: 2px solid #f9d9e8;
+        }
+
+        .img-box { width: 65px; height: 65px; background: #1a1a1a; border-radius: 15px; overflow: hidden; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .view-btn {
+            background: var(--dark-pink); color: white; border: none;
+            padding: 6px 18px; border-radius: 15px; font-weight: bold; cursor: pointer;
+        }
+
+        .footer-pink {
+            position: absolute; bottom: 20px; left: 20px; right: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .username {
+            background: white; color: var(--text-pink); padding: 5px 15px;
+            font-weight: bold; clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
+        }
+
+        /* --- Overlays --- */
+        #heart-overlay, #canvas-overlay, #image-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9); display: none; z-index: 2000;
+        }
+        #image-overlay { overflow-y: auto; text-align: center; padding: 60px 20px; }
+        .gallery-img { width: 90%; max-width: 350px; margin-bottom: 20px; border: 3px solid white; border-radius: 15px; }
+        .close-btn {
+            position: fixed; top: 20px; right: 20px; background: #ff1e6d; color: white;
+            border: none; padding: 10px 15px; border-radius: 50%; cursor: pointer; z-index: 2001; font-weight: bold;
+        }
+        #textContainer {
+            position: absolute; color: #ff1e6d; font-size: 8vmin; font-weight: 900;
+            text-align: center; z-index: 10; pointer-events: none; width: 100%; top: 45%; left: 50%; transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card" id="loginCard">
+        <div class="top-section"><div class="profile-img"></div></div>
+        <div class="form-section">
+            <div class="name-tag">Ahona</div>
+            <input type="password" id="passInput" placeholder="password ...">
+            <button class="login-btn" onclick="checkLogin()">+ Login</button>
+        </div>
+    </div>
+
+    <div id="musicPlayer">
+        <div class="top-welcome-area"><div class="welcome-text">Welcome!</div></div>
+        <div class="header-img-welcome">
+            <img src="https://i.ibb.co.com/bjFfZkBM/abab9e2f08e3b0e7c18647c55c7d72a5.jpg" alt="Header">
+        </div>
+        <div class="content-welcome">
+            <h3 style="margin: 0 0 10px 5px; color: #333;">More</h3>
+            <div class="music-row">
+                <div style="width:50px; height:50px; background:#000; border-radius:10px; color:#fff; display:flex; justify-content:center; align-items:center;">♫</div>
+                <button class="play-btn" id="pBtn">▶</button>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-box-welcome"><img src="https://i.ibb.co.com/7t9FYW16/cropped-circle-image-1.png"></div>
+                <div class="photo-box-welcome"><img src="https://i.ibb.co.com/HLKHYJnL/cropped-circle-image.png"></div>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <div class="click-me-btn" onclick="openCyberPink()">Click me</div>
+        </div>
+    </div>
+
+    <div id="cyberPinkContainer">
+        <div class="cyber-card-main">
+            <div class="header-box">
+                <img src="https://i.ibb.co.com/7xN17sg5/8e63315d3de1431247e1926398267c67.jpg" alt="Header">
+            </div>
+            <div class="inner-canvas">
+                <div class="card">
+                    <div class="img-box"><img src="https://i.ibb.co.com/bMz0x2ws/Picsart-26-01-22-22-10-14-653.png"></div>
+                    <div class="button-row">
+                        <div class="icon-circle">❤</div>
+                        <button class="view-btn" onclick="showHeart()">view</button>
+                        <div class="icon-circle">😊</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img-box"><img src="https://i.ibb.co.com/qMsDWJCV/Picsart-26-01-22-22-12-07-396.png"></div>
+                    <div class="button-row">
+                        <div class="icon-circle">❤</div>
+                        <button class="view-btn" onclick="showCanvasHeart()">view</button>
+                        <div class="icon-circle">😊</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img-box"><img src="https://i.ibb.co.com/7xN17sg5/8e63315d3de1431247e1926398267c67.jpg"></div>
+                    <div class="button-row">
+                        <div class="icon-circle">❤</div>
+                        <button class="view-btn" onclick="showGallery()">view</button>
+                        <div class="icon-circle">😊</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-pink">
+                <div class="username">AHONA</div>
+                <div class="status-indicators"><div class="rect"></div><div class="rect"></div><div class="rect"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="heart-overlay"><button class="close-btn" onclick="hideAll()">X</button></div>
+    <div id="canvas-overlay">
+        <button class="close-btn" onclick="hideAll()">X</button>
+        <div id="textContainer"><span>I LOVE YOU</span><br><span>AHONA</span></div>
+        <canvas id="heartCanvas"></canvas>
+    </div>
+    <div id="image-overlay">
+        <button class="close-btn" onclick="hideAll()">X</button>
+        <img class="gallery-img" src="https://i.ibb.co.com/bMz0x2ws/Picsart-26-01-22-22-10-14-653.png">
+        <img class="gallery-img" src="https://i.ibb.co.com/qMsDWJCV/Picsart-26-01-22-22-12-07-396.png">
+        <img class="gallery-img" src="https://i.ibb.co.com/7xN17sg5/8e63315d3de1431247e1926398267c67.jpg">
+    </div>
+
+    <audio id="track"><source src="https://files.catbox.moe/5pqyvj.mp3" type="audio/mpeg"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // 1. LOGIN LOGIC
+        function checkLogin() {
+            const pass = document.getElementById('passInput').value;
+            if (pass.toLowerCase().trim() === "6969") {
+                document.getElementById('loginCard').style.display = "none";
+                document.getElementById('musicPlayer').style.display = "block";
+            } else {
+                alert("উমম! পাসওয়ার্ডটা ভুল হলো। আবার চেষ্টা করো! ❤️");
+                document.getElementById('passInput').value = "";
+            }
+        }
+
+        // 2. OPEN CYBER PINK PAGE
+        function openCyberPink() {
+            document.getElementById('musicPlayer').style.display = "none";
+            document.getElementById('cyberPinkContainer').style.display = "block";
+            document.body.style.backgroundColor = "#ffffff";
+        }
+
+        // 3. MUSIC PLAYER
+        const song = document.getElementById("track");
+        const btn = document.getElementById("pBtn");
+        btn.onclick = () => {
+            if (song.paused) { song.play(); btn.innerHTML = "⏸"; }
+            else { song.pause(); btn.innerHTML = "▶"; }
+        };
+
+        // 4. NAVIGATION & OVERLAYS
+        function showHeart() {
+            document.getElementById('heart-overlay').style.display = 'block';
+            if(!window.threeStarted) { initThreeJS(); window.threeStarted = true; }
+        }
+        function showCanvasHeart() {
+            document.getElementById('canvas-overlay').style.display = 'block';
+            if(!window.canvasStarted) { initCanvasJS(); window.canvasStarted = true; }
+        }
+        function showGallery() { document.getElementById('image-overlay').style.display = 'block'; }
+        function hideAll() {
+            document.getElementById('heart-overlay').style.display = 'none';
+            document.getElementById('canvas-overlay').style.display = 'none';
+            document.getElementById('image-overlay').style.display = 'none';
+        }
+
+        // --- Three.js (Card 1) ---
+        function initThreeJS() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            camera.position.z = 80;
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('heart-overlay').appendChild(renderer.domElement);
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.autoRotate = true;
+            const heartShape = new THREE.Shape();
+            heartShape.moveTo(0,0); heartShape.bezierCurveTo(0,-3,-5,-15,-20,-15);
+            heartShape.bezierCurveTo(-35,-15,-35,7,-35,7); heartShape.bezierCurveTo(-35,16,-25,25,0,45);
+            heartShape.bezierCurveTo(25,25,35,16,35,7); heartShape.bezierCurveTo(35,7,35,-15,20,-15);
+            heartShape.bezierCurveTo(10,-15,0,-3,0,0);
+            const geometry = new THREE.ExtrudeGeometry(heartShape, { depth: 6, bevelEnabled: true });
+            const material = new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true });
+            const heart = new THREE.Mesh(geometry, material); heart.rotation.x = Math.PI; scene.add(heart);
+            function animate() {
+                if(document.getElementById('heart-overlay').style.display === 'block'){
+                    requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera);
+                }
+            } animate();
+        }
+
+        // --- Canvas Heart (Card 2) ---
+        function initCanvasJS() {
+            const canvas = document.getElementById('heartCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height; const particles = [];
+            function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize); resize();
+            function getHeartPoint(t) {
+                const r = Math.min(width, height) * 0.040;
+                return { x: 16 * Math.pow(Math.sin(t), 3) * r, y: -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * r };
+            }
+            class Particle {
+                constructor() { this.init(true); }
+                init(isFirstLoad = false) {
+                    const t = Math.random() * Math.PI * 2; const pt = getHeartPoint(t);
+                    this.targetX = width / 2 + pt.x; this.targetY = height * 0.45 + pt.y;
+                    this.x = width / 2 + (Math.random() - 0.5) * 500; this.y = isFirstLoad ? (Math.random() * height) : (height + 20);
+                    this.speed = Math.random() * 0.03 + 0.01; this.size = Math.random() * 1.8 + 0.3;
+                    this.color = Math.random() > 0.2 ? '#ff1e6d' : '#ffffff'; this.opacity = 0;
+                }
+                update() {
+                    this.x += (this.targetX - this.x) * this.speed; this.y += (this.targetY - this.y) * this.speed;
+                    if (this.opacity < 1) this.opacity += 0.03;
+                    if (Math.hypot(this.x - this.targetX, this.y - this.targetY) < 5) this.init(false);
+                }
+                draw() { ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.fillRect(this.x, this.y, this.size, this.size); }
+            }
+            for (let i = 0; i < 1500; i++) particles.push(new Particle());
+            function animate() {
+                if(document.getElementById('canvas-overlay').style.display === 'block'){
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; ctx.fillRect(0, 0, width, height);
+                    particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate);
+                }
+            } animate();
+        }
+    </script>
+</body>
+</html>
